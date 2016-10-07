@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ios-clone-switch</title>
+	<style type="text/css">
+
+		/*
+		* This markup is just so we have a proper
+		* place to illustrate. No need to copy this
+		*/
+		html {
+			
+		}
+		.checkbox-blue-wrapper div:first-child,
+		.checkbox-ios-wrapper div:first-child {
+			margin-bottom: 50px;
+		}
+		.checkbox-blue-wrapper {
+			background-color: #00a5eb;
+			color: #fff;
+			font-weight: bold;
+			padding: 50px;
+			margin: 0 0 10px 0;
+		}
+		.checkbox-ios-wrapper {
+			background: #f4f4f4;
+			color: #333;
+			font-weight: bold;
+			padding: 50px;
+			margin: 0 0 10px 0;
+		}
+
+
+
+		/* + + + + + + + + + + + + + + + + + + + + +
+		*
+		* IOS CHECKBOX
+		*
+		+ + + + + + + + + + + + + + + + + + + + + */
+		/* 
+		* This is the markup used for the ios switch
+		* checkbox. copy all of it, and change colors
+		* and sizes to suit your needs.
+		*/
+		.checkbox_ios {
+			position: relative;
+			width: 400px;
+		}
+		.checkbox_ios .ios-skin {
+			position: relative;
+			display: inline-block;
+			height: 35px;
+			cursor: pointer;
+		}
+		/* Normalizing (use only what is neccessary) */
+		.checkbox_ios .ios-skin > input[type="checkbox"] {
+			position: absolute;
+			z-index: -1;
+			padding: 0;
+			margin: 0;
+			opacity: 0;
+			visibility: hidden;
+		}
+		/* Body */
+		.checkbox_ios .ios-skin .ios-skin_body {
+			position: relative;
+			display: inline-block;
+			width: 60px;
+			height: 35px;
+			border: 1px solid #e0e0e0;
+			border-radius: 35px;
+			box-sizing: border-box;
+			background-color: #64bd63;
+			transition: background-color 250ms cubic-bezier(.34, 1.61, .7, 1);
+		}
+		/* Unchecked body color */
+		.checkbox_ios .ios-skin>:not(:checked)~.ios-skin_body {
+			border-color: #e0e0e0;
+			background-color: #fff;
+		}
+		/* Switch */
+		.checkbox_ios .ios-skin .ios-skin_switch {
+			display: inline-block;
+			box-sizing: border-box;
+			position: absolute;
+			/* we position -2 to compensate for border */
+			top: 1px;
+			left: 1px;
+			width: 31px;
+			height: 31px;
+			border: 1px solid #e0e0e0;
+			border-radius: 50%;
+			background-color: #fff;
+			box-shadow: -1px 1px 1px rgba(0,0,0,0.15);
+			/* Bounce switch into position */
+			transition: 250ms cubic-bezier(.34, 1.61, .7, 1);
+		}
+		/* Unchecked switch color */
+		.checkbox_ios .ios-skin>:not(:checked)~.ios-skin_body .ios-skin_switch {
+			border-color: #e0e0e0;
+			box-shadow: 1px 1px 1px rgba(0,0,0,0.15);
+		}
+		/* When checked, move the switch */
+		.checkbox_ios .ios-skin >:checked~.ios-skin_body .ios-skin_switch {
+			-webkit-transform: translateX(25px); /* radio-switch-width - radio-switch-radius */
+			transform: translateX(25px);
+		}
+
+		/* Optional: label following the checkbox */
+		.checkbox_ios label:not(.ios-skin)  {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			height: 35px;
+			line-height: 35px;
+			padding: 0 0 0 calc(35px/2 + 75px); /* radio-switch-radius/2 + radio-switch-width; */
+			text-align: left;
+			cursor: pointer;
+		}
+
+
+
+		/* + + + + + + + + + + + + + + + + + + + + +
+		*
+		* BLUE CHECKBOX
+		*
+		+ + + + + + + + + + + + + + + + + + + + + */
+		/* 
+		* This is the markup used for the ios switch
+		* checkbox. copy all of it, and change colors
+		* and sizes to suit your needs.
+		*/
+		.checkbox_blue {
+			position: relative;
+			width: 400px;
+		}
+		.checkbox_blue .ios-skin {
+			position: relative;
+			display: inline-block;
+			height: 35px;
+			cursor: pointer;
+		}
+		/* Normalizing (use only what is neccessary) */
+		.checkbox_blue .ios-skin > input[type="checkbox"] {
+			position: absolute;
+			z-index: -1;
+			padding: 0;
+			margin: 0;
+			opacity: 0;
+			visibility: hidden;
+		}
+		/* Body */
+		.checkbox_blue .ios-skin .ios-skin_body {
+			position: relative;
+			display: inline-block;
+			width: 75px;
+			height: 35px;
+			border: 2px solid #fff;
+			border-radius: 35px;
+			box-sizing: border-box;
+			background-color: #fff;
+			transition: background-color 250ms cubic-bezier(.34, 1.61, .7, 1);
+		}
+		/* Unchecked body color */
+		.checkbox_blue .ios-skin>:not(:checked)~.ios-skin_body {
+			border-color: #99dbf7;
+			background-color: #99dbf7;
+		}
+		/* Switch */
+		.checkbox_blue .ios-skin .ios-skin_switch {
+			display: inline-block;
+			box-sizing: border-box;
+			position: absolute;
+			/* we position -2 to compensate for border */
+			top: -2px;
+			left: -2px;
+			width: 35px;
+			height: 35px;
+			border: 2px solid #fff;
+			border-radius: 50%;
+			background-color: #0891d8;
+			box-shadow: -1px 1px 1px rgba(0,0,0,0.15);
+			/* Bounce switch into position */
+			transition: 250ms cubic-bezier(.34, 1.61, .7, 1);
+		}
+		/* Unchecked switch color */
+		.checkbox_blue .ios-skin>:not(:checked)~.ios-skin_body .ios-skin_switch {
+			border-color: #99dbf7;
+			box-shadow: 1px 1px 1px rgba(0,0,0,0.15);
+		}
+		/* When checked, move the switch */
+		.checkbox_blue .ios-skin >:checked~.ios-skin_body .ios-skin_switch {
+			-webkit-transform: translateX(40px); /* radio-switch-width - radio-switch-radius */
+			transform: translateX(40px);
+		}
+
+		/* Checkmark/dash */
+		.checkbox_blue .ios-skin .checkmark {
+			position: absolute;
+			z-index: 1;
+			top: 50%;
+			right: 0;
+			display:inline-block;
+			width: 15px;
+			height: 4px;
+			margin: -2px 14px 0 0;
+		}
+		/* Unchecked checkboxes show a dash */
+		.checkbox_blue .ios-skin .checkmark:after {
+			bottom: 0;
+			content: "";
+			position: absolute;
+			height:4px;
+			background-color: #00a5eb;
+			width: 15px;
+		}
+		/* Checked checkboxes show a checkmark */
+		.checkbox_blue .ios-skin >:checked~.checkmark {
+			right: unset;
+			left: 0;
+			margin: -2px 0 0 9px;
+			/* transform still needs prefixes */
+			-webkit-transform: rotate(225deg); /* Chrome, Safari, Opera */
+			-ms-transform: rotate(225deg); /* IE 9 */
+			transform: rotate(225deg);
+		}
+		/* Long part of checkmark */
+		.checkbox_blue .ios-skin >:checked~.checkmark:before {
+			content: "";
+			position: absolute;
+			width: 4px;
+			height: 15px;
+			background-color: #00a5eb;
+		}
+		/* Short part of checkmark */
+		.checkbox_blue .ios-skin >:checked~.checkmark:after {
+			bottom: unset;
+			width:10px;
+		}
+
+		/* Optional: label following the checkbox */
+		.checkbox_blue label:not(.ios-skin)  {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			height: 35px;
+			line-height: 35px;
+			padding: 0 0 0 calc(35px/2 + 75px); /* radio-switch-radius/2 + radio-switch-width; */
+			text-align: left;
+			cursor: pointer;
+		}
+		/* Done! */
+	</style>
+</head>
+<body>
+
+<!-- IOS CHECKBOX -->
+<div class="checkbox-ios-wrapper">
+	
+	<!-- ios checkbox markup start -->
+	<div class="checkbox_ios">
+		<label class="ios-skin" for="darkside">
+			<input type="checkbox" id="darkside" data-role="darkside" value="1" checked="checked">
+			<span class="ios-skin_body"><span class="ios-skin_switch"></span></span>
+			<i class="checkmark"></i>
+		</label>
+		<label for="darkside" class="hd xsmall bold italic white">Yes, join the dark side.</label>
+	</div>
+
+	<!-- ios checkbox markup start -->
+	<div class="checkbox_ios">
+		<label class="ios-skin" for="smartside">
+			<input type="checkbox" id="smartside" data-role="smartside" value="1">
+			<span class="ios-skin_body"><span class="ios-skin_switch"></span></span>
+			<i class="checkmark"></i>
+		</label>
+		<label for="smartside" class="hd xsmall bold italic white">Urgh, smart you are.</label>
+	</div>
+
+</div>
+
+<!-- BLUE CHECKBOX -->
+<div class="checkbox-blue-wrapper">
+	
+	<!-- blue checkbox markup start -->
+	<div class="checkbox_blue">
+		<label class="ios-skin" for="lightsaber">
+			<input type="checkbox" id="lightsaber" data-role="lightsaber" value="1" checked="checked">
+			<span class="ios-skin_body"><span class="ios-skin_switch"></span></span>
+			<i class="checkmark"></i>
+		</label>
+		<label for="lightsaber" class="hd xsmall bold italic white">Yes, include a lightsabre.</label>
+	</div>
+
+	<!-- blue checkbox markup start -->
+	<div class="checkbox_blue">
+		<label class="ios-skin" for="dangerous">
+			<input type="checkbox" id="dangerous" data-role="dangerous" value="1">
+			<span class="ios-skin_body"><span class="ios-skin_switch"></span></span>
+			<i class="checkmark"></i>
+		</label>
+		<label for="dangerous" class="hd xsmall bold italic white">Urgh, dangerous you are.</label>
+	</div>
+
+</div>
+
+	
+
+</body>
+</html>
